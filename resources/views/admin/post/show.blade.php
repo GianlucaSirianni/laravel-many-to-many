@@ -5,9 +5,11 @@
 @endsection
 
 @section('content')
+
     <div>
         <h1>{{ $elem->name }}</h1>
     </div>
+
     <div>
         <p>
             {{ $elem->date }}
@@ -22,6 +24,12 @@
         <div>
             <p>
                 {{ $elem->description }}
+            </p>
+        </div>
+
+        <div>
+            <p>
+                {{ $elem->title }}
             </p>
         </div>
 

@@ -105,6 +105,7 @@ class PostController extends Controller
     {
         $data = $request->all();
         $post = Post::findOrFail($id);
+        // $categories = Category::findOrFail($id);
         // $request->validate(
             // [
             //     'name' => 'required|max:50'
@@ -115,6 +116,7 @@ class PostController extends Controller
             // ]
         // );
         $post->update($data);
+        // $post->update($categories);
 
         return redirect()->route('admin.posts.show', $post->id)->with('success', "Hai modificato con successo: $post->name");
     }

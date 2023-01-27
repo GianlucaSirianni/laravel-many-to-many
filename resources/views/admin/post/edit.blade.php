@@ -30,7 +30,7 @@ Cos'e' non ti piace il post?
 
     <div class="my-3">
             <label for="">Socials</label>
-            <select name="user_social" id="">
+            <select name="category_id" id="">
                 <option value="">Seleziona il tuo social preferito</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}"
