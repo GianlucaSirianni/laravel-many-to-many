@@ -50,7 +50,7 @@
                     type="checkbox"
                     name="tags[]"
                     value="{{ $tag->id }}"
-                        {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+                        {{ $elem->tags->contains($tag) ? 'checked' : '' }}>
                     {{ $tag->name }}
                 </label>
             @endforeach
