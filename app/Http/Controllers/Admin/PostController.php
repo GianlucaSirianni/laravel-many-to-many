@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Mail\ConfirmationPostMail;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -76,7 +78,11 @@ class PostController extends Controller
 
         if (array_key_exists('tags', $data)) {
             $newPost->tags()->sync($data['tags']);
-        }
+        };
+
+        $mail = new ConfirmationPostMail($newPost);
+        $userEmail = Auth::user()->email;
+        Mail::to($userEmail)->send($mail);
 
         return redirect()->route('admin.posts.index');
     }
@@ -142,6 +148,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $singlePost = Post::findOrFail($id);
+        if($singlePost->cover){
+            Storage::delete($singlePost->cover);
+        };
         $singlePost->tags()->sync([]);
         $singlePost->delete();
         return redirect()->route('admin.posts.index');

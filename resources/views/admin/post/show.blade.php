@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <div>
         <h1>{{ $elem->name }}</h1>
     </div>
@@ -14,25 +13,28 @@
         <p>
             {{ $elem->date }}
         </p>
-    </div>
-    {{-- @if ( session('success') )
+
+    {{-- @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif --}}
 
-        <div>
-            <p>
-                {{ $elem->description }}
-            </p>
-        </div>
+        <p>
+            {{ $elem->title }}
+        </p>
 
-        <div>
-            <p>
-                {{ $elem->title }}
-            </p>
-        </div>
 
-        <a href="{{ route('admin.posts.index') }}"><i class="fa-solid fa-left-long"></i></a>
+        <p>
+            {{ $elem->description }}
+        </p>
+    </div>
+    <div>
+        <img src="{{asset("storage/$elem->cover")}}" alt="">
+    </div>
 
+
+
+
+    <a href="{{ route('admin.posts.index') }}"><i class="fa-solid fa-left-long"></i></a>
 @endsection
